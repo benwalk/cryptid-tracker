@@ -1,26 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import SimpleAppBar from "./AppBar";
+import Setup from "./setup/Setup";
+import Layout from "./layout/Layout";
+import PlayerData from "./data/players";
+import RulesData from "./data/rules";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleSetupChange = this.handleSetupChange.bind(this);
+    this.state = {
+      setup: {
+        advancedMode: false,
+        playerCount: 0,
+        rule: ""
+      }
+    };
+  }
+
+  handleSetupChange(setup) {
+    console.log(setup);
+    this.setState({ setup: setup });
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <SimpleAppBar />
+        <Setup setup={this.state.setup} updateSetup={this.handleSetupChange} />
+        <Layout />
+      </div>
+    );
+  }
 }
 
 export default App;
