@@ -5,6 +5,7 @@ import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import PlayerData from "../data/players";
 import RulesData from "../data/rules";
+import Instructions from "../setup/Instructions";
 import TrackerBox from "./components/TrackerBox";
 
 const styles = theme => ({
@@ -12,35 +13,47 @@ const styles = theme => ({
     flexGrow: 1
   },
   paper: {
-    padding: theme.spacing.unit,
+    margin: theme.spacing.unit * 2,
+    padding: theme.spacing.unit * 2,
     textAlign: "center",
     color: theme.palette.text.secondary
   }
 });
 
-class Layout extends React.Component {
+class BoardLayout extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      players: [],
-      rules: []
+      setup: {},
+      data: {}
     };
   }
 
   componentDidMount() {
-    this.setState({ players: PlayerData, rules: RulesData });
+    console.log(this.props.setup);
+    this.setState({ setup: this.props.setup });
   }
 
   renderGrid() {
-    var rules = this.state.rules;
+    const { classes } = this.props;
+    const rulesData = RulesData;
     var rows = [];
 
-    rows.push(this.renderPlayerHeaderRow());
-    for (var rule = 0; rule < rules.length; rule++) {
-      rows.push(this.renderRuleRow(rules[rule]));
+    for (var rule = 0; rule < rulesData.length; rule++) {
+      if (rule === 0) {
+        rows.push(this.renderPlayerHeaderRow());
+      } else {
+        rows.push(this.renderRuleRow(rulesData[rule]));
+      }
     }
 
-    return rows;
+    return (
+      <Grid container direction="row" justify="flex-start" alignItems="center">
+        <Grid item xs={12}>
+          <Paper className={classes.paper}>{rows}</Paper>
+        </Grid>
+      </Grid>
+    );
   }
 
   renderEmpty() {
@@ -48,18 +61,19 @@ class Layout extends React.Component {
   }
 
   renderPlayerHeaderRow() {
-    var players = this.state.players;
+    const playerCount = this.state.setup.playerCount;
     var cols = [];
 
     cols.push(this.renderEmpty());
-    players.map(player => {
-      cols.push(this.renderPlayerHeader(player));
+    PlayerData.forEach(player => {
+      if (player.id <= playerCount) {
+        cols.push(this.renderPlayerHeader(player));
+      }
     });
 
     return (
       <Grid
         container
-        spacing={8}
         direction="row"
         justify="flex-start"
         alignItems="stretch"
@@ -74,24 +88,25 @@ class Layout extends React.Component {
     var key = "header-player-" + player.id;
     return (
       <Grid item xs={1} key={key}>
-        <Paper className={this.props.classes.paper}>{player.name}</Paper>
+        {player.name}
       </Grid>
     );
   }
 
   renderRuleRow(rule) {
-    var players = this.state.players;
+    var playerCount = this.state.setup.playerCount;
     var cols = [];
 
     cols.push(this.renderRuleHeader(rule));
-    players.map(player => {
-      cols.push(this.renderTracker(player, rule));
+    PlayerData.forEach(player => {
+      if (player.id <= playerCount) {
+        cols.push(this.renderTracker(player, rule));
+      }
     });
 
     return (
       <Grid
         container
-        spacing={8}
         direction="row"
         justify="flex-start"
         alignItems="stretch"
@@ -106,7 +121,7 @@ class Layout extends React.Component {
     var key = "header-rule-" + rule.id;
     return (
       <Grid item xs={1} key={key}>
-        <Paper className={this.props.classes.paper}>{rule.tag}</Paper>
+        {rule.tag}
       </Grid>
     );
   }
@@ -115,21 +130,38 @@ class Layout extends React.Component {
     var name = "tracker-" + player.name + "-" + rule.id;
     return (
       <Grid item xs={1} key={name}>
-        <Paper className={this.props.classes.paper}>
-          <TrackerBox name={name} tracked={trackState} />
-        </Paper>
+        <TrackerBox name={name} tracked={trackState} />
+      </Grid>
+    );
+  }
+
+  renderInstructions() {
+    const { classes } = this.props;
+
+    return (
+      <Grid container direction="row" justify="flex-start" alignItems="center">
+        <Grid item xs={12}>
+          <Paper className={classes.paper}>
+            <Instructions />
+          </Paper>
+        </Grid>
       </Grid>
     );
   }
 
   render() {
     const { classes } = this.props;
-    return <div className={classes.root}> {this.renderGrid()} </div>;
+
+    if (this.state.setup.complete) {
+      return <div className={classes.root}> {this.renderGrid()} </div>;
+    } else {
+      return <div className={classes.root} />;
+    }
   }
 }
 
-Layout.propTypes = {
+BoardLayout.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(Layout);
+export default withStyles(styles)(BoardLayout);

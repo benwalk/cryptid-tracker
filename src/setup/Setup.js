@@ -13,8 +13,8 @@ const styles = theme => ({
   },
   paper: {
     padding: theme.spacing.unit * 2,
-    color: theme.palette.text.secondary,
-    margin: theme.spacing.unit * 2
+    margin: theme.spacing.unit * 2,
+    color: theme.palette.text.secondary
   }
 });
 
@@ -49,7 +49,6 @@ class Setup extends React.Component {
       <div className={classes.root}>
         <Grid
           container
-          spacing={24}
           direction="row"
           justify="flex-start"
           alignItems="center"

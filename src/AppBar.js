@@ -19,7 +19,7 @@ function SimpleAppBar(props) {
       <AppBar position="static" color="default">
         <Toolbar>
           <Typography variant="h6" color="inherit">
-            Cryptid Tracker v0.1
+            Cryptid Tracker v0.2
           </Typography>
         </Toolbar>
       </AppBar>

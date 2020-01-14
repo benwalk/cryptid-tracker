@@ -51,13 +51,14 @@ class RuleSelect extends React.Component {
 
   render() {
     const { classes } = this.props;
+    const rule = this.props.rule;
 
     return (
       <div className={classes.root}>
         <FormControl className={classes.formControl}>
           <InputLabel htmlFor="rule-native-simple">Rule</InputLabel>
           <NativeSelect
-            value={this.props.rule}
+            value={rule}
             onChange={this.handleChange}
             inputProps={{
               name: "rule",

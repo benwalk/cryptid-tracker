@@ -1,9 +1,14 @@
 import React from "react";
+import { withStyles } from "@material-ui/core/styles";
 import SimpleAppBar from "./AppBar";
 import Setup from "./setup/Setup";
-import Layout from "./layout/Layout";
-import PlayerData from "./data/players";
-import RulesData from "./data/rules";
+import BoardLayout from "./board/BoardLayout";
+
+const styles = {
+  root: {
+    background: "linear-gradient(45deg, #45986E 30%, #10556D 90%)"
+  }
+};
 
 class App extends React.Component {
   constructor(props) {
@@ -13,25 +18,32 @@ class App extends React.Component {
       setup: {
         advancedMode: false,
         playerCount: 0,
-        rule: ""
+        rule: "",
+        complete: false
       }
     };
   }
 
   handleSetupChange(setup) {
-    console.log(setup);
+    if (setup.playerCount > 0 && setup.rule !== "") {
+      setup.complete = true;
+    } else {
+      setup.complete = false;
+    }
     this.setState({ setup: setup });
   }
 
   render() {
+    const { classes } = this.props;
+
     return (
-      <div className="App">
+      <div className={classes.root}>
         <SimpleAppBar />
         <Setup setup={this.state.setup} updateSetup={this.handleSetupChange} />
-        <Layout />
+        <BoardLayout setup={this.state.setup} />
       </div>
     );
   }
 }
 
-export default App;
+export default withStyles(styles)(App);
