@@ -13,15 +13,17 @@ const styles = {
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.handleSetupChange = this.handleSetupChange.bind(this);
+
     this.state = {
       setup: {
         advancedMode: false,
-        playerCount: 0,
-        rule: "",
-        complete: false
+        playerCount: 5,
+        rule: "1",
+        complete: true
       }
     };
+
+    this.handleSetupChange = this.handleSetupChange.bind(this);
   }
 
   handleSetupChange(setup) {

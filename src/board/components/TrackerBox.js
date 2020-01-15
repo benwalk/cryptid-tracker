@@ -8,12 +8,13 @@ const styles = theme => ({
     flexGrow: 1
   },
   button: {
-    padding: 0
+    padding: 10
   }
 });
 
 class TrackerBox extends React.Component {
   state = {
+    player: "",
     unknown: true,
     possible: false,
     impossible: false,

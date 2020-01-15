@@ -47,14 +47,14 @@ class Setup extends React.Component {
 
     return (
       <div className={classes.root}>
-        <Grid
-          container
-          direction="row"
-          justify="flex-start"
-          alignItems="center"
-        >
-          <Grid item xs={12}>
-            <Paper className={classes.paper}>
+        <Paper className={classes.paper}>
+          <Grid
+            container
+            direction="row"
+            justify="flex-start"
+            alignItems="center"
+          >
+            <Grid item xs={12}>
               <AdvancedModeSelect
                 advancedMode={setup.advancedMode}
                 onAdvancedModeChange={this.handleAdvancedModeChange}
@@ -69,9 +69,9 @@ class Setup extends React.Component {
                 rule={setup.rule}
                 onRuleChange={this.handleRuleChange}
               />
-            </Paper>
+            </Grid>
           </Grid>
-        </Grid>
+        </Paper>
       </div>
     );
   }

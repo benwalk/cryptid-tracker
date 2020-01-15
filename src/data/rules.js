@@ -52,76 +52,71 @@ export default [
   {
     id: 11,
     description: "Within 1 of Forest",
-    tag: "F/D"
+    tag: "F+1"
   },
   {
     id: 12,
     description: "Within 1 of Desert",
-    tag: "F/D"
+    tag: "D+1"
   },
   {
     id: 13,
     description: "Within 1 of Water",
-    tag: "F/D"
+    tag: "W+1"
   },
   {
     id: 14,
     description: "Within 1 of Swamp",
-    tag: "F/D"
+    tag: "S+1"
   },
   {
     id: 15,
     description: "Within 1 of Mountain",
-    tag: "F/D"
+    tag: "M+1"
   },
   {
     id: 16,
     description: "Within 1 of Animals",
-    tag: "F/D"
+    tag: "A+1"
   },
   {
     id: 17,
     description: "Within 2 of Standing Stone",
-    tag: "F/D"
+    tag: "[]+2"
   },
   {
     id: 18,
     description: "Within 2 of Abandoned Shack",
-    tag: "F/D"
+    tag: "/\\+2"
   },
   {
     id: 19,
     description: "Within 2 of Bears",
-    tag: "F/D"
+    tag: "B+2"
   },
   {
     id: 20,
     description: "Within 2 of Cougars",
-    tag: "F/D"
+    tag: "C+2"
   },
   {
     id: 21,
-    description: "Within 2 of Cougars",
-    tag: "F/D"
+    description: "Within 3 of White",
+    tag: "W+3"
   },
   {
     id: 22,
-    description: "Within 3 of White",
-    tag: "F/D"
+    description: "Within 3 of Blue",
+    tag: "B+3"
   },
   {
     id: 23,
-    description: "Within 3 of Blue",
-    tag: "F/D"
+    description: "Within 3 of Green",
+    tag: "G+3"
   },
   {
     id: 24,
-    description: "Within 3 of Green",
-    tag: "F/D"
-  },
-  {
-    id: 25,
     description: "Within 3 of Black",
-    tag: "F/D"
+    tag: "U+3"
   }
 ];
