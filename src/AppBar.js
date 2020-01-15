@@ -1,34 +1,31 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
+import { version } from ".././package.json";
 
-const styles = {
+const styles = theme => ({
   root: {
-    flexGrow: 1
+    background: theme.palette.background.default
+  },
+  toolbar: {
+    background: "#45986E",
+    color: theme.palette.background.default,
+    fontWeight: theme.typography.fontWeightBold
   }
-};
+});
 
 function SimpleAppBar(props) {
   const { classes } = props;
 
   return (
-    <div className={classes.root}>
-      <AppBar position="static" color="default">
-        <Toolbar>
-          <Typography variant="h6" color="inherit">
-            Cryptid Tracker v0.2
-          </Typography>
-        </Toolbar>
-      </AppBar>
-    </div>
+    <AppBar position="static" className={classes.root}>
+      <Toolbar className={classes.toolbar}>
+        <Typography variant="h6">{"Cryptid Tracker v" + version}</Typography>
+      </Toolbar>
+    </AppBar>
   );
 }
-
-SimpleAppBar.propTypes = {
-  classes: PropTypes.object.isRequired
-};
 
 export default withStyles(styles)(SimpleAppBar);

@@ -15,7 +15,7 @@ class RuleColumn extends React.Component {
     var items = [];
 
     // one empty one to line up with player header
-    items.push(<Grid item key="origin" />);
+    items.push(<Grid item xs key="origin" />);
 
     // one header for each rule
     RulesMeta.forEach(rule => {
@@ -34,6 +34,7 @@ class RuleColumn extends React.Component {
     return (
       <Grid
         container
+        spacing={3}
         direction="column"
         justify="flex-start"
         alignItems="flex-start"

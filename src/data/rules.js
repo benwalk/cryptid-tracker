@@ -37,17 +37,17 @@ export default [
   {
     id: 8,
     description: "On Water or Swamp",
-    tag: "F/D"
+    tag: "W/S"
   },
   {
     id: 9,
     description: "On Water or Mountain",
-    tag: "F/D"
+    tag: "W/M"
   },
   {
     id: 10,
     description: "On Swamp or Mountain",
-    tag: "F/D"
+    tag: "S/M"
   },
   {
     id: 11,

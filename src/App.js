@@ -1,8 +1,10 @@
 import React from "react";
 import { withStyles } from "@material-ui/core/styles";
+import CssBaseline from "@material-ui/core/CssBaseline";
 import SimpleAppBar from "./AppBar";
 import Setup from "./setup/Setup";
 import BoardLayout from "./board/BoardLayout";
+import Container from "@material-ui/core/Container";
 
 const styles = {
   root: {
@@ -39,11 +41,16 @@ class App extends React.Component {
     const { classes } = this.props;
 
     return (
-      <div className={classes.root}>
-        <SimpleAppBar />
-        <Setup setup={this.state.setup} updateSetup={this.handleSetupChange} />
-        <BoardLayout setup={this.state.setup} />
-      </div>
+      <Container disableGutters className={classes.root}>
+        <CssBaseline>
+          <SimpleAppBar />
+          <Setup
+            setup={this.state.setup}
+            updateSetup={this.handleSetupChange}
+          />
+          <BoardLayout setup={this.state.setup} />
+        </CssBaseline>
+      </Container>
     );
   }
 }

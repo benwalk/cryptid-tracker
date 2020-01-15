@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
@@ -8,13 +7,10 @@ import PlayerCountSelect from "./PlayerCountSelect";
 import RuleSelect from "./RuleSelect";
 
 const styles = theme => ({
-  root: {
-    flexGrow: 1
-  },
   paper: {
     padding: theme.spacing.unit * 2,
     margin: theme.spacing.unit * 2,
-    color: theme.palette.text.secondary
+    color: theme.palette.text.main
   }
 });
 
@@ -46,39 +42,33 @@ class Setup extends React.Component {
     const setup = this.props.setup;
 
     return (
-      <div className={classes.root}>
-        <Paper className={classes.paper}>
-          <Grid
-            container
-            direction="row"
-            justify="flex-start"
-            alignItems="center"
-          >
-            <Grid item xs={12}>
-              <AdvancedModeSelect
-                advancedMode={setup.advancedMode}
-                onAdvancedModeChange={this.handleAdvancedModeChange}
-              />
+      <Paper className={classes.paper}>
+        <Grid
+          container
+          direction="row"
+          justify="flex-start"
+          alignItems="center"
+        >
+          <Grid item xs={12}>
+            <AdvancedModeSelect
+              advancedMode={setup.advancedMode}
+              onAdvancedModeChange={this.handleAdvancedModeChange}
+            />
 
-              <PlayerCountSelect
-                playerCount={setup.playerCount}
-                onPlayerCountChange={this.handlePlayerCountChange}
-              />
+            <PlayerCountSelect
+              playerCount={setup.playerCount}
+              onPlayerCountChange={this.handlePlayerCountChange}
+            />
 
-              <RuleSelect
-                rule={setup.rule}
-                onRuleChange={this.handleRuleChange}
-              />
-            </Grid>
+            <RuleSelect
+              rule={setup.rule}
+              onRuleChange={this.handleRuleChange}
+            />
           </Grid>
-        </Paper>
-      </div>
+        </Grid>
+      </Paper>
     );
   }
 }
-
-Setup.propTypes = {
-  classes: PropTypes.object.isRequired
-};
 
 export default withStyles(styles)(Setup);
